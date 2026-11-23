@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Shopping Cart | Nandana Super Shop Sri Lanka</title>
+  <meta name="description" content="Review your selected household goods and plastic products. Order directly via WhatsApp with doorstep islandwide delivery across Sri Lanka.">
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-badge">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+        <span>Islandwide Delivery Available Across Sri Lanka</span>
+      </div>
+      <div class="top-bar-links">
+        <a href="https://wa.me/94778704807" target="_blank" rel="noopener noreferrer" class="whatsapp-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+          <span>WhatsApp: +94 77 870 4807</span>
+        </a>
+        <a href="admin.html" class="admin-link">Admin Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="main-header" id="main-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo-wrap">
+        <img src="images/logo.jpg" alt="Nandana Super Shop Logo" class="brand-logo-img">
+        <div>
+          <div class="brand-title">Nandana <span>Super</span></div>
+          <div class="brand-sub">Plastic & Home Essentials</div>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="categories.html" class="nav-link">Categories</a>
+        <a href="about.html" class="nav-link">About Us</a>
+        <a href="contact.html" class="nav-link">Contact Us</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="shop.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 13px;">
+          Continue Shopping
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <div style="background: linear-gradient(135deg, #ffffff 0%, #f4fbf0 100%); border-bottom: 1px solid var(--border-color); padding: 40px 0;">
+    <div class="container">
+      <h1 style="font-size: 32px; font-weight: 900; color: var(--dark-text); margin-bottom: 6px;">Your Shopping Cart</h1>
+      <p style="font-size: 14px; color: var(--text-muted);">Review your items and proceed with convenient WhatsApp ordering.</p>
+    </div>
+  </div>
+
+  <!-- Cart Page Content -->
+  <main class="section">
+    <div class="container">
+      <!-- Empty Cart Message -->
+      <div id="cart-page-empty" class="hidden" style="text-align: center; padding: 80px 20px; background: #fff; border: 1px solid var(--border-color); border-radius: var(--radius-lg);">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5" style="margin: 0 auto 16px;"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <h2 style="font-size: 22px; font-weight: 800; color: var(--dark-text); margin-bottom: 8px;">Your Cart is Currently Empty</h2>
+        <p style="font-size: 15px; color: var(--text-muted); margin-bottom: 24px;">Discover our wide selection of storage baskets, kitchenware, and home plastics.</p>
+        <a href="shop.html" class="btn btn-primary" style="padding: 12px 28px;">
+          Explore Products & Start Shopping
+        </a>
+      </div>
+
+      <!-- Active Cart Content -->
+      <div id="cart-page-content" class="grid grid-cols-1 lg:grid-cols-3 gap-8" style="display: grid; grid-template-columns: 2fr 1fr; gap: 32px;">
+        <!-- Left: Product Table -->
+        <div>
+          <div class="cart-table-wrapper">
+            <table class="cart-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th class="text-right">Price</th>
+                  <th class="text-center">Quantity</th>
+                  <th class="text-right">Total</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody id="cart-page-items">
+                <!-- Rendered dynamically by js/cart.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <a href="shop.html" class="btn btn-outline">
+              &larr; Continue Shopping
+            </a>
+            <button type="button" class="btn btn-sm btn-danger" onclick="if(confirm('Clear all items from your cart?')) Cart.clear();">
+              Clear Entire Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Order Summary Breakdown -->
+        <div>
+          <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+            <h3 style="font-size: 18px; font-weight: 800; color: var(--dark-text); margin-bottom: 18px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+              Order Summary
+            </h3>
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; color: var(--text-muted);">
+              <span>Total Items:</span>
+              <span id="cart-page-totalitems" style="font-weight: 700; color: var(--dark-text);">0</span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; color: var(--text-muted);">
+              <span>Subtotal:</span>
+              <span id="cart-page-subtotal" style="font-weight: 700; color: var(--dark-text);">LKR 0</span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; color: var(--text-muted);">
+              <span>Islandwide Delivery:</span>
+              <span style="font-weight: 700; color: var(--brand-green-dark);">Confirmed on WhatsApp</span>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; margin-top: 18px; padding-top: 14px; border-top: 1px dashed var(--border-color); font-size: 20px; font-weight: 900; color: var(--dark-text);">
+              <span>Grand Total:</span>
+              <span id="cart-page-grandtotal" style="color: var(--brand-green-dark);">LKR 0</span>
+            </div>
+
+            <button type="button" class="btn-proceed-wa proceed-whatsapp-btn" style="width: 100%; margin-top: 24px; padding: 14px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+              <span>Proceed to WhatsApp Order</span>
+            </button>
+
+            <div style="margin-top: 16px; background-color: var(--brand-green-subtle); border-radius: var(--radius-sm); padding: 12px; font-size: 12px; color: #555; line-height: 1.5;">
+              <strong>Note:</strong> When you click proceed, WhatsApp will automatically open with your exact formatted order details ready to be sent to <strong>+94 77 870 4807</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>&copy; 2026 Nandana Super Shop. All rights reserved.</div>
+        <div>Islandwide Delivery Across Sri Lanka • WhatsApp: +94 77 870 4807</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Nandana Super Shop</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: #f7f9f6;">
+
+  <!-- View 1: Admin Login View -->
+  <div id="admin-login-view" class="hidden" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; max-width: 420px; padding: 36px;">
+      <div style="text-align: center; margin-bottom: 28px;">
+        <img src="images/logo.jpg" alt="Nandana Super Shop Logo" style="width: 64px; height: 64px; border-radius: var(--radius-md); object-fit: cover; margin: 0 auto 12px; box-shadow: var(--shadow-sm);">
+        <h1 style="font-size: 24px; font-weight: 900; color: var(--dark-text);">Nandana Super Shop</h1>
+        <p style="font-size: 13px; color: var(--text-muted);">Store Management & Admin Portal</p>
+      </div>
+
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label for="admin-username" class="form-label">Username</label>
+          <input type="text" id="admin-username" class="form-input" placeholder="Enter admin username" required autocomplete="username">
+        </div>
+
+        <div class="form-group">
+          <label for="admin-password" class="form-label">Password</label>
+          <input type="password" id="admin-password" class="form-input" placeholder="••••••••••••" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; margin-top: 10px;">
+          <span>Login to Dashboard</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="index.html" style="font-size: 12px; color: var(--text-muted);">&larr; Back to Public Shop</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- View 2: Admin Dashboard View -->
+  <div id="admin-dashboard-view">
+    <!-- Admin Topbar -->
+    <header style="background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 30;">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <img src="images/logo.jpg" alt="Nandana Super Shop Logo" style="width: 38px; height: 38px; border-radius: var(--radius-sm); object-fit: cover;">
+        <div>
+          <span style="font-size: 18px; font-weight: 900; color: var(--dark-text);">Nandana <span style="color: var(--brand-green);">Super</span></span>
+          <span style="font-size: 11px; background: var(--brand-green-light); color: var(--brand-green-dark); font-weight: 800; padding: 2px 8px; border-radius: var(--radius-full); margin-left: 8px;">Admin Panel</span>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="index.html" target="_blank" class="btn btn-sm btn-outline" style="gap: 6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          <span>View Public Store</span>
+        </a>
+        <button type="button" id="admin-logout-btn" class="btn btn-sm btn-danger">
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <div class="admin-container">
+      <!-- Sidebar Navigation (Prompt Requirement #8) -->
+      <aside class="admin-sidebar">
+        <nav class="admin-nav">
+          <button type="button" class="admin-nav-item active" data-tab="dashboard">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>Dashboard</span>
+          </button>
+
+          <button type="button" class="admin-nav-item" data-tab="products">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <span>Products</span>
+          </button>
+
+          <button type="button" class="admin-nav-item" data-tab="categories">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+            <span>Categories</span>
+          </button>
+
+          <button type="button" class="admin-nav-item" onclick="Admin.openAddProductModal()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Add New Product</span>
+          </button>
+
+          <button type="button" class="admin-nav-item" data-tab="settings">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <span>Website Settings</span>
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Main Admin Content Area -->
+      <main class="admin-main">
+        <!-- TAB 1: DASHBOARD OVERVIEW -->
+        <div id="tab-dashboard" class="admin-tab-pane">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+            <div>
+              <h2 style="font-size: 24px; font-weight: 800; color: var(--dark-text);">Overview Dashboard</h2>
+              <p style="font-size: 13px; color: var(--text-muted);">Manage your online catalog, pricing, categories, and inventory.</p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+              <button type="button" class="btn btn-primary" onclick="Admin.openAddProductModal()">
+                + Add Product
+              </button>
+              <button type="button" class="btn btn-outline" onclick="Admin.openAddCategoryModal()">
+                + Add Category
+              </button>
+            </div>
+          </div>
+
+          <!-- Stat Metric Cards (Prompt Requirement #8) -->
+          <div class="admin-stat-grid">
+            <div class="stat-card">
+              <div class="stat-label">Total Products</div>
+              <div class="stat-value" id="stat-total-products">0</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-label">Total Categories</div>
+              <div class="stat-value" id="stat-total-categories">0</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-label" style="color: #2e7d32;">Available Products</div>
+              <div class="stat-value" id="stat-avail-products" style="color: #2e7d32;">0</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-label" style="color: #c62828;">Unavailable Products</div>
+              <div class="stat-value" id="stat-unavail-products" style="color: #c62828;">0</div>
+            </div>
+          </div>
+
+          <!-- Recently Added Products Table -->
+          <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h3 style="font-size: 16px; font-weight: 800; color: var(--dark-text);">Recently Added Products</h3>
+              <button type="button" class="admin-action-btn" onclick="Admin.switchTab('products')">View All Products &rarr;</button>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table class="cart-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Quick Action</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-products-table"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: PRODUCTS MANAGEMENT -->
+        <div id="tab-products" class="admin-tab-pane hidden">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-bottom: 24px;">
+            <div>
+              <h2 style="font-size: 24px; font-weight: 800; color: var(--dark-text);">Product Management</h2>
+              <p style="font-size: 13px; color: var(--text-muted);">Add, edit prices, upload images, and control availability.</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <input type="text" id="admin-search-products" placeholder="Search products..." class="form-input" style="width: 220px; padding: 8px 14px;">
+              <button type="button" class="btn btn-primary" onclick="Admin.openAddProductModal()">
+                + Add New Product
+              </button>
+            </div>
+          </div>
+
+          <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm);">
+            <div style="overflow-x: auto;">
+              <table class="cart-table">
+                <thead>
+                  <tr>
+                    <th>Product Details</th>
+                    <th>Category</th>
+                    <th>Price (LKR)</th>
+                    <th>Availability</th>
+                    <th>Featured</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-products-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: CATEGORIES MANAGEMENT -->
+        <div id="tab-categories" class="admin-tab-pane hidden">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+            <div>
+              <h2 style="font-size: 24px; font-weight: 800; color: var(--dark-text);">Category Management</h2>
+              <p style="font-size: 13px; color: var(--text-muted);">Manage shopping departments and categories.</p>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="Admin.openAddCategoryModal()">
+              + Add Category
+            </button>
+          </div>
+
+          <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm);">
+            <div style="overflow-x: auto;">
+              <table class="cart-table">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Products Count</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-categories-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: SETTINGS -->
+        <div id="tab-settings" class="admin-tab-pane hidden">
+          <div style="margin-bottom: 24px;">
+            <h2 style="font-size: 24px; font-weight: 800; color: var(--dark-text);">Website Settings</h2>
+            <p style="font-size: 13px; color: var(--text-muted);">Configure business details, WhatsApp checkout number, and delivery info.</p>
+          </div>
+
+          <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 32px; max-width: 680px; box-shadow: var(--shadow-sm);">
+            <form id="settings-form">
+              <div class="form-group">
+                <label for="set-shop-name" class="form-label">Shop Name</label>
+                <input type="text" id="set-shop-name" class="form-input" required>
+              </div>
+
+              <div class="form-group">
+                <label for="set-whatsapp" class="form-label">WhatsApp Order Number (International Format)</label>
+                <input type="text" id="set-whatsapp" class="form-input" required placeholder="+94778704807">
+              </div>
+
+              <div class="form-group">
+                <label for="set-phone" class="form-label">Contact Phone</label>
+                <input type="text" id="set-phone" class="form-input" required placeholder="+94 77 870 4807">
+              </div>
+
+              <div class="form-group">
+                <label for="set-email" class="form-label">Store Email</label>
+                <input type="email" id="set-email" class="form-input" required placeholder="orders@nandanasupershop.lk">
+              </div>
+
+              <div class="form-group">
+                <label for="set-hours" class="form-label">Business Hours</label>
+                <input type="text" id="set-hours" class="form-input" required placeholder="Monday - Sunday: 8:00 AM - 9:00 PM">
+              </div>
+
+              <div class="form-group">
+                <label for="set-delivery" class="form-label">Islandwide Delivery Information</label>
+                <textarea id="set-delivery" class="form-textarea" rows="3"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="padding: 12px 28px;">
+                Save Website Settings
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit Product -->
+  <div class="modal-overlay" id="product-modal">
+    <div class="modal-card" style="max-width: 600px; padding: 28px;">
+      <button type="button" class="modal-close-btn" onclick="Admin.closeProductModal()">&times;</button>
+      <h3 id="product-modal-title" style="font-size: 20px; font-weight: 800; margin-bottom: 20px; color: var(--dark-text);">
+        Add Product
+      </h3>
+
+      <form id="product-form">
+        <div class="form-group">
+          <label for="prod-name" class="form-label">Product Name *</label>
+          <input type="text" id="prod-name" class="form-input" placeholder="e.g. Plastic Storage Basket" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label for="prod-price" class="form-label">Price (LKR) *</label>
+            <input type="number" id="prod-price" class="form-input" placeholder="1250" required min="1">
+          </div>
+
+          <div class="form-group">
+            <label for="prod-category" class="form-label">Category *</label>
+            <select id="prod-category" class="form-select" required></select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="prod-desc" class="form-label">Product Description</label>
+          <textarea id="prod-desc" class="form-textarea" rows="3" placeholder="Features, specifications, durability, dimensions..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Product Image</label>
+          <div style="display: flex; gap: 14px; align-items: center; margin-bottom: 8px;">
+            <img id="prod-image-preview" src="" alt="Preview" style="width: 60px; height: 60px; border-radius: var(--radius-sm); object-fit: cover; border: 1px solid var(--border-color);">
+            <div style="flex: 1;">
+              <input type="file" id="prod-image-file" accept="image/*" class="form-input" style="padding: 6px;">
+            </div>
+          </div>
+          <input type="text" id="prod-image-url" class="form-input" placeholder="Or paste image URL (Unsplash, CDN, etc.)">
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px;">
+          <div class="form-group">
+            <label for="prod-stock" class="form-label">Stock Quantity</label>
+            <input type="number" id="prod-stock" class="form-input" value="25" min="0">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 8px; justify-content: center;">
+            <label style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; cursor: pointer;">
+              <input type="checkbox" id="prod-available" checked>
+              <span>Product Available</span>
+            </label>
+            <label style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; cursor: pointer;">
+              <input type="checkbox" id="prod-featured">
+              <span>Featured Product</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+          <button type="button" class="btn btn-outline" onclick="Admin.closeProductModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add / Edit Category -->
+  <div class="modal-overlay" id="category-modal">
+    <div class="modal-card" style="max-width: 520px; padding: 28px;">
+      <button type="button" class="modal-close-btn" onclick="Admin.closeCategoryModal()">&times;</button>
+      <h3 id="cat-modal-title" style="font-size: 20px; font-weight: 800; margin-bottom: 20px; color: var(--dark-text);">
+        Add Category
+      </h3>
+
+      <form id="category-form">
+        <div class="form-group">
+          <label for="cat-name" class="form-label">Category Name *</label>
+          <input type="text" id="cat-name" class="form-input" placeholder="e.g. Kitchenware" required>
+        </div>
+
+        <div class="form-group">
+          <label for="cat-desc" class="form-label">Description</label>
+          <textarea id="cat-desc" class="form-textarea" rows="2" placeholder="Brief category description..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="cat-img" class="form-label">Category Image URL</label>
+          <input type="text" id="cat-img" class="form-input" placeholder="images/categories/plastic-products.jpg">
+        </div>
+
+        <div class="form-group">
+          <label style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; cursor: pointer;">
+            <input type="checkbox" id="cat-active" checked>
+            <span>Active Category</span>
+          </label>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px;">
+          <button type="button" class="btn btn-outline" onclick="Admin.closeCategoryModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
